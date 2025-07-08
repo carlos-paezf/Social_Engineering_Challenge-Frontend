@@ -1,5 +1,10 @@
+import { SimpleLayout } from "../layout/SimpleLayout";
+
+
 export const LoginPage = () => {
     return (
-        <div>LoginPage</div>
+        <SimpleLayout>
+            <h2>Login Page</h2>
+        </SimpleLayout>
     );
 };

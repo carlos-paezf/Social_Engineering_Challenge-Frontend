@@ -1,5 +1,10 @@
+import { MainLayout } from "../layout/MainLayout";
+
+
 export const HomePage = () => {
     return (
-        <div>HomePage</div>
+        <MainLayout>
+            <h2>Home Page</h2>
+        </MainLayout>
     );
 };
