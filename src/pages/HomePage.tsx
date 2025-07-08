@@ -13,7 +13,7 @@ export const HomePage = () => {
                     disponibles para descubrir la contraseña de un perfil... ¡Antes de que se acabe el tiempo!
                 </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">no
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
                     <Link to="/login">
                         <button className="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-4 rounded-xl transition">
                             🔐 Iniciar Reto
