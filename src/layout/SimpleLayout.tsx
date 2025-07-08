@@ -1,6 +1,7 @@
 import type { FC, ReactNode } from "react";
 import { Footer } from '../components/Footer';
 
+import './layout.css';
 
 interface Props {
     children: ReactNode;
@@ -9,8 +10,8 @@ interface Props {
 
 export const SimpleLayout: FC<Props> = ( { children } ) => {
     return (
-        <div className="flex flex-col min-h-screen bg-gray-100">
-            <main className="flex-grow flex items-center justify-content p-4">
+        <div className="flex flex-col h-screen bg-gray-100">
+            <main className="main-layout flex-grow flex items-center justify-content p-4">
                 { children }
             </main>
 

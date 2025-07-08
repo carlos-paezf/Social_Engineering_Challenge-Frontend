@@ -2,6 +2,7 @@ import type { FC, ReactNode } from 'react';
 import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 
+import './layout.css';
 
 interface Props {
     children: ReactNode;
@@ -10,9 +11,13 @@ interface Props {
 
 export const MainLayout: FC<Props> = ( { children } ) => {
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col h-screen">
             <Header />
-            <main className="flew-grow p-4 bg-gray-50">{ children }</main>
+
+            <main className="main-layout flew-1 overflow-y-auto p-4 bg-gray-50 flex flex items-center justify-content">
+                { children }
+            </main>
+
             <Footer />
         </div>
     );
