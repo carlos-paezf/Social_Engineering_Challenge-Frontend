@@ -14,7 +14,7 @@ export const MainLayout: FC<Props> = ( { children } ) => {
         <div className="flex flex-col h-screen">
             <Header />
 
-            <main className="main-layout flew-1 overflow-y-auto p-4 bg-gray-50 flex flex items-center justify-content">
+            <main className="main-layout flew-1 overflow-y-auto p-4 bg-gray-50">
                 { children }
             </main>
 
