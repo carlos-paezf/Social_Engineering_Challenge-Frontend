@@ -1,13 +1,30 @@
-import type { FC } from "react";
+import { motion } from "framer-motion";
+import { useEffect, type FC } from "react";
+import { useCluesStore } from "../../hooks/useCluesStore";
 import type { Hint } from "../../types/PostHint";
 import { formatPostDate } from "../../utils/formatTime";
 
 
-export const CluePost: FC<Hint> = ( { id, imageUrl, postDate, description, comments, likes, profileName, profileAvatar } ) => {
+interface Props extends Hint {
+    idx: number;
+}
+
+
+export const CluePost: FC<Props> = ( { idx, id, imageUrl, postDate, description, comments, likes, profileName, profileAvatar } ) => {
     const formattedDate = formatPostDate( postDate );
+    const viewHint = useCluesStore( ( state ) => state.viewHint );
+
+    useEffect( () => {
+        viewHint( id );
+    }, [ id, viewHint ] );
 
     return (
-        <div key={ id } className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 my-5">
+        <motion.div key={ id }
+            initial={ { opacity: 0, y: 40 } }
+            animate={ { opacity: 1, y: 0 } }
+            transition={ { duration: 0.5, ease: "easeOut", delay: idx * 0.1 } }
+            className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200"
+        >
             <div className="flex items-center gap-3 p-4">
                 <img src={ profileAvatar || "/assets/default-avatar.png" } alt="Avatar" className="w-10 h-10 rounded-full object-cover" />
 
@@ -38,6 +55,6 @@ export const CluePost: FC<Hint> = ( { id, imageUrl, postDate, description, comme
                     }
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
