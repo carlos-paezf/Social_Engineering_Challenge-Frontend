@@ -16,6 +16,8 @@ interface CluesStore {
     markLoginSuccess: () => void;
     markLoginFailure: () => void;
     resetLoginState: () => void;
+    hasSentScore: boolean,
+    markScoreSent: () => void;
 }
 
 
@@ -34,45 +36,54 @@ try {
 /* This code snippet is creating a custom hook called `useCluesStore` using the Zustand library in
 TypeScript. The `create` function from Zustand is used to define the store shape and initial state. */
 export const useCluesStore = create<CluesStore>(
-    ( set, get ) => ( {
-        startTime: null,
-        startClock: () => {
-            if ( get().startTime === null ) {
-                set( { startTime: Date.now() } );
-            }
-        },
-        viewedHints: [],
-        viewHint: ( id: string ) => {
-            const { viewedHints, startClock } = get();
-            if ( !viewedHints.includes( id ) ) {
-                startClock();
-                set( { viewedHints: [ ...viewedHints, id ] } );
-            }
-        },
-        visibleCount: 1,
-        loadNextHint: () => {
-            const current = get().visibleCount;
-            set( { visibleCount: current + 1 } );
-        },
-        loginResult: loginResultFromLS,
-        failedAttempts: failedAttemptsFromLS,
-        markLoginSuccess: () => {
-            localStorage.setItem( "loginResult", JSON.stringify( "success" ) );
-            set( { loginResult: "success" } );
-        },
-        markLoginFailure: () => set( ( state ) => {
-            const updatedAttempts = state.failedAttempts + 1;
-            localStorage.setItem( "loginResult", JSON.stringify( "failed" ) );
-            localStorage.setItem( "failedAttempts", JSON.stringify( updatedAttempts ) );
-            return {
-                loginResult: "failed",
-                failedAttempts: state.failedAttempts + 1
-            };
-        } ),
-        resetLoginState: () => {
-            localStorage.setItem( "loginResult", JSON.stringify( "pending" ) );
-            localStorage.setItem( "failedAttempts", JSON.stringify( 0 ) );
-            set( { loginResult: "pending", failedAttempts: 0 } );
-        }
-    } )
+    ( set, get ) => {
+        const persistedStart = localStorage.getItem( "startTime" );
+        const initialStartTime = persistedStart ? Number( persistedStart ) : null;
+
+        return {
+            startTime: initialStartTime,
+            startClock: () => {
+                if ( get().startTime === null ) {
+                    const now = Date.now();
+                    localStorage.setItem( "startTime", String( now ) );
+                    set( { startTime: Date.now() } );
+                }
+            },
+            viewedHints: [],
+            viewHint: ( id: string ) => {
+                const { viewedHints, startClock } = get();
+                if ( !viewedHints.includes( id ) ) {
+                    startClock();
+                    set( { viewedHints: [ ...viewedHints, id ] } );
+                }
+            },
+            visibleCount: 1,
+            loadNextHint: () => {
+                const current = get().visibleCount;
+                set( { visibleCount: current + 1 } );
+            },
+            loginResult: loginResultFromLS,
+            failedAttempts: failedAttemptsFromLS,
+            markLoginSuccess: () => {
+                localStorage.setItem( "loginResult", JSON.stringify( "success" ) );
+                set( { loginResult: "success" } );
+            },
+            markLoginFailure: () => set( ( state ) => {
+                const updatedAttempts = state.failedAttempts + 1;
+                localStorage.setItem( "loginResult", JSON.stringify( "failed" ) );
+                localStorage.setItem( "failedAttempts", JSON.stringify( updatedAttempts ) );
+                return {
+                    loginResult: "failed",
+                    failedAttempts: state.failedAttempts + 1
+                };
+            } ),
+            resetLoginState: () => {
+                localStorage.setItem( "loginResult", JSON.stringify( "pending" ) );
+                localStorage.setItem( "failedAttempts", JSON.stringify( 0 ) );
+                set( { loginResult: "pending", failedAttempts: 0 } );
+            },
+            hasSentScore: false,
+            markScoreSent: () => set( { hasSentScore: true } )
+        };
+    }
 );
