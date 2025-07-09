@@ -16,28 +16,28 @@ const LoginPage = lazy( () => import( "../pages/LoginPage" ) );
 const router = createBrowserRouter( [
     {
         path: '/', element: (
-            <Suspense fallback={ <LoaderSpinner message="Cargando inicio..." /> }>
+            <Suspense fallback={ <LoaderSpinner message="Cargando inicio..." className="min-h-screen" size="lg" /> }>
                 <HomePage />
             </Suspense>
         )
     },
     {
         path: '/hints', element: (
-            <Suspense fallback={ <LoaderSpinner message="Cargando pistas..." /> }>
+            <Suspense fallback={ <LoaderSpinner message="Cargando pistas..." className="min-h-screen" size="lg" /> }>
                 <CluesPage />
             </Suspense>
         )
     },
     {
         path: '/login', element: (
-            <Suspense fallback={ <LoaderSpinner message="Preparando acceso..." /> }>
+            <Suspense fallback={ <LoaderSpinner message="Preparando acceso..." className="min-h-screen" size="lg" /> }>
                 <LoginPage />
             </Suspense>
         )
     },
     {
         path: '/ranking', element: (
-            <Suspense fallback={ <LoaderSpinner message="Cargando ranking..." /> }>
+            <Suspense fallback={ <LoaderSpinner message="Cargando ranking..." className="min-h-screen" size="lg" /> }>
                 <LeaderboardPage />
             </Suspense>
         )
@@ -45,7 +45,7 @@ const router = createBrowserRouter( [
     {
         path: "/success-challenge",
         element: (
-            <Suspense fallback={ <LoaderSpinner message='Validando resultado...' /> }>
+            <Suspense fallback={ <LoaderSpinner message='Validando resultado...' className="min-h-screen" size="lg" /> }>
                 <ProtectedRoute>
                     <SuccessChallengePage />
                 </ProtectedRoute>
@@ -55,7 +55,7 @@ const router = createBrowserRouter( [
     {
         path: "/failure-challenge",
         element: (
-            <Suspense fallback={ <LoaderSpinner message='Evaluando resultado...' /> }>
+            <Suspense fallback={ <LoaderSpinner message='Evaluando resultado...' className="min-h-screen" size="lg" /> }>
                 <ProtectedRoute>
                     <FailureChallengePage />
                 </ProtectedRoute>
