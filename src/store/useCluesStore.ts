@@ -18,6 +18,7 @@ interface CluesStore {
     resetLoginState: () => void;
     hasSentScore: boolean,
     markScoreSent: () => void;
+    resetProgress: () => void;
 }
 
 
@@ -83,7 +84,17 @@ export const useCluesStore = create<CluesStore>(
                 set( { loginResult: "pending", failedAttempts: 0 } );
             },
             hasSentScore: false,
-            markScoreSent: () => set( { hasSentScore: true } )
+            markScoreSent: () => set( { hasSentScore: true } ),
+            resetProgress: () => {
+                localStorage.removeItem( "startTime" );
+                set( {
+                    startTime: null,
+                    viewedHints: [],
+                    visibleCount: 1,
+                    failedAttempts: 0,
+                    hasSentScore: false
+                } );
+            }
         };
     }
 );

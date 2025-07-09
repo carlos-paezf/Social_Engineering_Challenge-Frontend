@@ -13,6 +13,7 @@ export const SuccessChallengePage = () => {
     const failedAttempts = useCluesStore.getState().failedAttempts;
     const hasSentScore = useCluesStore( ( state ) => state.hasSentScore );
     const markScoreSent = useCluesStore( ( state ) => state.markScoreSent );
+    const resetProgress = useCluesStore( ( state ) => state.resetProgress );
 
     const [ timeTaken, setTimeTaken ] = useState<number | null>( null );
 
@@ -33,9 +34,10 @@ export const SuccessChallengePage = () => {
             {
                 onSuccess: () => {
                     markScoreSent();
+                    resetProgress();
                 }
             } );
-    }, [ groupData, startTime, failedAttempts, hasSentScore, sendScore, markScoreSent ] );
+    }, [ groupData, startTime, failedAttempts, hasSentScore, sendScore, markScoreSent, resetProgress ] );
 
     return (
         <MainLayout>

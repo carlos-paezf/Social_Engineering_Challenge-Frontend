@@ -12,7 +12,7 @@ interface RegisterResponse {
 export const useRegisterGroup = () => {
     return useMutation<RegisterResponse, Error, GroupData>( {
         mutationFn: async ( groupData: GroupData ) => {
-            const response = await api.post( "/auth/groups", groupData );
+            const response = await api.post( "/groups/register", groupData );
             return response.data;
         }
     } );

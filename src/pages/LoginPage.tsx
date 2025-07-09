@@ -43,7 +43,6 @@ const LoginPage = () => {
                     }
                 },
                 onError: () => {
-                    markLoginFailure();
                     setError( "Error de conexión. Intenta nuevamente." );
                 }
             }
