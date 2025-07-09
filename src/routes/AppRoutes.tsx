@@ -11,6 +11,7 @@ const CluesPage = lazy( () => import( "../pages/CluesPage" ) );
 const HomePage = lazy( () => import( "../pages/HomePage" ) );
 const LeaderboardPage = lazy( () => import( "../pages/LeaderboardPage" ) );
 const LoginPage = lazy( () => import( "../pages/LoginPage" ) );
+const RegisterPage = lazy( () => import( "../pages/RegisterPage" ) );
 
 
 const router = createBrowserRouter( [
@@ -18,6 +19,13 @@ const router = createBrowserRouter( [
         path: '/', element: (
             <Suspense fallback={ <LoaderSpinner message="Cargando inicio..." className="min-h-screen" size="lg" /> }>
                 <HomePage />
+            </Suspense>
+        )
+    },
+    {
+        path: '/register', element: (
+            <Suspense fallback={ <LoaderSpinner message="Cargando registro..." className="min-h-screen" size="lg" /> }>
+                <RegisterPage />
             </Suspense>
         )
     },
