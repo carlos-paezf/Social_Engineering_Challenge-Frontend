@@ -1,7 +1,7 @@
 import { useHints } from "../../api/useHints";
 import { LoaderSpinner } from "../../components/LoaderSpinner";
 import { ScrollSentinel } from "../../components/ScrollSentinel";
-import { useCluesStore } from "../../hooks/useCluesStore";
+import { useCluesStore } from "../../store/useCluesStore";
 import type { Hint } from "../../types/PostHint";
 import { sortByRecentDate } from "../../utils/formatTime";
 import { CluePost } from "./CluePost";

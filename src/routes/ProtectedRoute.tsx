@@ -1,5 +1,5 @@
 import type { FC, JSX } from "react";
-import { useCluesStore } from "../hooks/useCluesStore";
+import { useCluesStore } from "../store/useCluesStore";
 import { Navigate } from "react-router-dom";
 
 interface Props {

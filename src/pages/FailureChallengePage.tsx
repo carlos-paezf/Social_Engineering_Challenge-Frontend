@@ -1,4 +1,4 @@
-import { useCluesStore } from "../hooks/useCluesStore";
+import { useCluesStore } from "../store/useCluesStore";
 
 
 export const FailureChallengePage = () => {

@@ -2,7 +2,7 @@ import { useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLogin } from "../api/useLoginAttempt";
 import { LoginForm } from "../features/auth/LoginForm";
-import { useCluesStore } from "../hooks/useCluesStore";
+import { useCluesStore } from "../store/useCluesStore";
 import { MainLayout } from "../layout/MainLayout";
 
 

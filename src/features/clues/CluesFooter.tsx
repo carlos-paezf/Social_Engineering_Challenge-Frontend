@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useCluesStore } from '../../hooks/useCluesStore';
+import { useCluesStore } from '../../store/useCluesStore';
 
 
 const REQUIRED_VIEWS = 3;

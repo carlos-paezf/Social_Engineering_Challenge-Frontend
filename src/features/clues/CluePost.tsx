@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, type FC } from "react";
-import { useCluesStore } from "../../hooks/useCluesStore";
+import { useCluesStore } from "../../store/useCluesStore";
 import type { Hint } from "../../types/PostHint";
 import { formatPostDate } from "../../utils/formatTime";
 
