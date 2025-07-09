@@ -14,7 +14,7 @@ const HomePage = () => {
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-                    <Link to="/login">
+                    <Link to="/register">
                         <button className="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold py-3 px-4 rounded-xl transition">
                             🔐 Iniciar Reto
                         </button>

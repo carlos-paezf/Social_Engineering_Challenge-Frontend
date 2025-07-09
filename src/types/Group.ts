@@ -4,3 +4,9 @@ export interface GroupData {
     leaderName: string;
     memberCount: number;
 }
+
+
+export interface GroupRanking extends GroupData {
+    timeTaken: number;
+    attempts: number;
+}

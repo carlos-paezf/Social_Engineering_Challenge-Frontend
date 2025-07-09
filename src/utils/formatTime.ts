@@ -33,3 +33,33 @@ export const sortByRecentDate = <T extends { postDate: string | Date; }> ( items
         return new Date( b.postDate ).getTime() - new Date( a.postDate ).getTime();
     } );
 };
+
+
+/**
+ * The `formatDuration` function in TypeScript takes a duration in milliseconds and returns a formatted
+ * string in the format "mm:ss".
+ * @param {number} ms - The `ms` parameter in the `formatDuration` function represents the duration in
+ * milliseconds that you want to format into minutes and seconds.
+ * @returns The `formatDuration` function is returning a formatted string representing the duration in
+ * minutes and seconds. The format is in the form of "minutes:seconds", where both minutes and seconds
+ * are padded with leading zeros if necessary.
+ */
+export function formatDuration ( ms: number ): string {
+    const totalSeconds = Math.floor( ms / 1000 );
+    const minutes = Math.floor( totalSeconds / 60 );
+    const seconds = totalSeconds % 60;
+
+    return `${ pad( minutes ) }:${ pad( seconds ) }`;
+}
+
+/**
+ * The function "pad" takes a number as input and returns a string representation of the number with a
+ * leading zero if the number is less than 10.
+ * @param {number} n - The parameter `n` in the `pad` function is a number that represents the value to
+ * be padded.
+ * @returns The function `pad` takes a number `n` as input and returns a string representation of that
+ * number with a leading zero if the number is less than 10.
+ */
+function pad ( n: number ): string {
+    return n < 10 ? `0${ n }` : `${ n }`;
+}
