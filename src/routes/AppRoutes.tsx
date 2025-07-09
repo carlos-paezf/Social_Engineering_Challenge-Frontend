@@ -46,7 +46,7 @@ const router = createBrowserRouter( [
         path: "/success-challenge",
         element: (
             <Suspense fallback={ <LoaderSpinner message='Validando resultado...' className="min-h-screen" size="lg" /> }>
-                <ProtectedRoute>
+                <ProtectedRoute condition='success'>
                     <SuccessChallengePage />
                 </ProtectedRoute>
             </Suspense>
@@ -56,7 +56,7 @@ const router = createBrowserRouter( [
         path: "/failure-challenge",
         element: (
             <Suspense fallback={ <LoaderSpinner message='Evaluando resultado...' className="min-h-screen" size="lg" /> }>
-                <ProtectedRoute>
+                <ProtectedRoute condition='failed'>
                     <FailureChallengePage />
                 </ProtectedRoute>
             </Suspense>

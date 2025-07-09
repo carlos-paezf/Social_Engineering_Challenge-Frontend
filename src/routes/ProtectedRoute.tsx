@@ -3,10 +3,11 @@ import { useCluesStore } from "../hooks/useCluesStore";
 import { Navigate } from "react-router-dom";
 
 interface Props {
+    condition: "pending" | "success" | "failed";
     children: JSX.Element;
 }
 
-export const ProtectedRoute: FC<Props> = ( { children } ) => {
+export const ProtectedRoute: FC<Props> = ( { condition, children } ) => {
     const loginResult = useCluesStore( ( state ) => state.loginResult );
-    return loginResult === "failed" ? children : <Navigate to="/" replace />;
+    return loginResult === condition ? children : <Navigate to="/" replace />;
 };;
