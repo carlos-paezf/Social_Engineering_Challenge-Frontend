@@ -1,5 +1,9 @@
 import { create } from "zustand";
 
+
+type LoginResult = "pending" | "success" | "failed";
+
+
 interface CluesStore {
     startTime: number | null;
     startClock: () => void;
@@ -7,6 +11,9 @@ interface CluesStore {
     viewHint: ( id: string ) => void;
     visibleCount: number;
     loadNextHint: () => void;
+    loginResult: LoginResult;
+    markLoginSuccess: () => void;
+    markLoginFailure: () => void;
 }
 
 
@@ -32,6 +39,9 @@ export const useCluesStore = create<CluesStore>(
         loadNextHint: () => {
             const current = get().visibleCount;
             set( { visibleCount: current + 1 } );
-        }
+        },
+        loginResult: 'pending',
+        markLoginSuccess: () => set( { loginResult: "success" } ),
+        markLoginFailure: () => set( { loginResult: "failed" } ),
     } )
 );

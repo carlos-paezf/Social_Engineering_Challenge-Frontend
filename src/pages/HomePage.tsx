@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import { MainLayout } from "../layout/MainLayout";
 
 
-export const HomePage = () => {
+const HomePage = () => {
     return (
         <MainLayout>
-            <div className="max-w-3xl mx-auto text-center space-y-6">
+            <div className="max-w-3xl mx-auto text-center space-y-6 my-auto">
                 <h2 className="text-5xl font-bold text-gray-800">¡Bienvenido al Reto Hacker!</h2>
 
                 <p className="text-lg text-gray-600">
@@ -36,3 +36,5 @@ export const HomePage = () => {
         </MainLayout>
     );
 };
+
+export default HomePage;

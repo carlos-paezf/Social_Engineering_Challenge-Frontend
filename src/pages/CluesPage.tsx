@@ -4,7 +4,7 @@ import { CluesHeader } from '../features/clues/CluesHeader';
 import { MainLayout } from '../layout/MainLayout';
 
 
-export const CluesPage = () => {
+const CluesPage = () => {
     return (
         <MainLayout>
             <CluesHeader />
@@ -13,3 +13,6 @@ export const CluesPage = () => {
         </MainLayout>
     );
 };
+
+
+export default CluesPage;

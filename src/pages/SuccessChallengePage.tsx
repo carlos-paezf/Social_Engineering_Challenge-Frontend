@@ -1,4 +1,4 @@
-export const SuccessPage = () => {
+export const SuccessChallengePage = () => {
     return (
         <div>SuccessPage</div>
     );

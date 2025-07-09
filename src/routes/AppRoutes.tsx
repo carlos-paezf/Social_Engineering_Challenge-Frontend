@@ -1,19 +1,71 @@
-import { Route, Routes } from 'react-router-dom';
-import { CluesPage } from '../pages/CluesPage';
-import { HomePage } from '../pages/HomePage';
-import { LeaderboardPage } from '../pages/LeaderboardPage';
-import { LoginPage } from '../pages/LoginPage';
+import { lazy, Suspense } from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { LoaderSpinner } from '../components/LoaderSpinner';
+import { FailureChallengePage } from '../pages/FailureChallengePage';
 import { NotFoundPage } from '../pages/NotFoundPage';
-import { SuccessPage } from '../pages/SuccessPage';
+import { SuccessChallengePage } from '../pages/SuccessChallengePage';
+import { ProtectedRoute } from './ProtectedRoute';
 
 
-export const AppRoutes = () => (
-    <Routes>
-        <Route path="/" element={ <HomePage /> } />
-        <Route path="/hints" element={ <CluesPage /> } />
-        <Route path="/login" element={ <LoginPage /> } />
-        <Route path="/ranking" element={ <LeaderboardPage /> } />
-        <Route path="/win" element={ <SuccessPage /> } />
-        <Route path="*" element={ <NotFoundPage /> } />
-    </Routes>
-);
+const CluesPage = lazy( () => import( "../pages/CluesPage" ) );
+const HomePage = lazy( () => import( "../pages/HomePage" ) );
+const LeaderboardPage = lazy( () => import( "../pages/LeaderboardPage" ) );
+const LoginPage = lazy( () => import( "../pages/LoginPage" ) );
+
+
+const router = createBrowserRouter( [
+    {
+        path: '/', element: (
+            <Suspense fallback={ <LoaderSpinner message="Cargando inicio..." /> }>
+                <HomePage />
+            </Suspense>
+        )
+    },
+    {
+        path: '/hints', element: (
+            <Suspense fallback={ <LoaderSpinner message="Cargando pistas..." /> }>
+                <CluesPage />
+            </Suspense>
+        )
+    },
+    {
+        path: '/login', element: (
+            <Suspense fallback={ <LoaderSpinner message="Preparando acceso..." /> }>
+                <LoginPage />
+            </Suspense>
+        )
+    },
+    {
+        path: '/ranking', element: (
+            <Suspense fallback={ <LoaderSpinner message="Cargando ranking..." /> }>
+                <LeaderboardPage />
+            </Suspense>
+        )
+    },
+    {
+        path: "/success-challenge",
+        element: (
+            <Suspense fallback={ <LoaderSpinner message='Validando resultado...' /> }>
+                <ProtectedRoute>
+                    <SuccessChallengePage />
+                </ProtectedRoute>
+            </Suspense>
+        )
+    },
+    {
+        path: "/failure-challenge",
+        element: (
+            <Suspense fallback={ <LoaderSpinner message='Evaluando resultado...' /> }>
+                <ProtectedRoute>
+                    <FailureChallengePage />
+                </ProtectedRoute>
+            </Suspense>
+        )
+    },
+    {
+        path: '*', element: ( <NotFoundPage /> )
+    }
+] );
+
+
+export const AppRoutes = () => <RouterProvider router={ router } />;
