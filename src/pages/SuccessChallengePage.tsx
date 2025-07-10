@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useGameStore } from "../store/useGameStore";
-import { useCluesStore } from "../store/useCluesStore";
+import { Link } from "react-router-dom";
 import { useSendScore } from "../api/useSendScore";
 import { MainLayout } from "../layout/MainLayout";
+import { useCluesStore } from "../store/useCluesStore";
+import { useGameStore } from "../store/useGameStore";
 import { formatDuration } from "../utils/formatTime";
 
 
@@ -62,6 +63,12 @@ export const SuccessChallengePage = () => {
                 <div className="mt-10 text-sm text-gray-300">
                     Puedes ver tu posición en el ranking desde la página principal.
                 </div>
+
+                <Link to="/ranking">
+                    <button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-4 rounded-xl transition mt-5">
+                        🏆 Ver Ranking
+                    </button>
+                </Link>
             </div>
         </MainLayout>
     );

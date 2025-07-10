@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { MainLayout } from "../layout/MainLayout";
 import { useCluesStore } from "../store/useCluesStore";
 
@@ -15,6 +16,12 @@ export const FailureChallengePage = () => {
                 <p className="text-gray-600">
                     Revisa las pistas y vuelve a intentarlo. ¡Tú puedes!
                 </p>
+
+                <Link to="/hints">
+                    <button className="w-full bg-green-600 hover:bg-green-800 text-white font-semibold py-3 px-4 rounded-xl transition mt-5">
+                        💡 Ver Pistas
+                    </button>
+                </Link>
             </div>
         </MainLayout>
     );

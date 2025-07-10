@@ -7,7 +7,6 @@ export const Header = () => {
             <h1 className="text-3xl font-bold">Reto Hacker</h1>
             <nav className="space-x-4">
                 <Link to="/" className="hover:underline">Inicio</Link>
-                <Link to="/hints" className="hover:underline">Pistas</Link>
                 <Link to="/ranking" className="hover:underline">Ranking</Link>
             </nav>
         </header>
