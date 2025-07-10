@@ -22,11 +22,11 @@ export const CluePost: FC<Props> = ( { idx, id, imageUrl, postDate, description,
         <motion.div key={ id }
             initial={ { opacity: 0, y: 40 } }
             animate={ { opacity: 1, y: 0 } }
-            transition={ { duration: 0.5, ease: "easeOut", delay: idx * 0.1 } }
+            transition={ { duration: 0.5, ease: "easeOut", delay: idx * 0.01 } }
             className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200"
         >
             <div className="flex items-center gap-3 p-4">
-                <img src={ profileAvatar ?? "src/assets/default-avatar.png" } alt="Avatar" className="w-10 h-10 rounded-full object-cover" />
+                <img src={ ( profileAvatar === "" || !profileAvatar || typeof ( profileAvatar ) === "undefined" ) ? "src/assets/default-avatar.png" : profileAvatar } alt="Avatar" className="w-10 h-10 rounded-full object-cover" />
 
                 <div className="">
                     <p className="font-semibold text-gray-800">{ profileName || "Victima" }</p>
