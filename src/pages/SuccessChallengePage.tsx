@@ -22,22 +22,22 @@ export const SuccessChallengePage = () => {
     `groupData`, `startTime`, `failedAttempts`, `hasSentScore`, `sendScore`, or `markScoreSent`
     change. */
     useEffect( () => {
-        if ( !groupData || !startTime || hasSentScore ) return;
+        if ( !groupData || startTime === null || hasSentScore ) return;
 
         const totalTime = Date.now() - startTime;
         setTimeTaken( totalTime );
+        markScoreSent();
 
         sendScore(
             {
-                ...groupData, timeTaken: totalTime, attempts: failedAttempts + 1
+                groupId: groupData.id, timeTaken: totalTime, attempts: failedAttempts + 1
             },
             {
                 onSuccess: () => {
-                    markScoreSent();
                     resetProgress();
                 }
             } );
-    }, [ groupData, startTime, failedAttempts, hasSentScore, sendScore, markScoreSent, resetProgress ] );
+    }, [ failedAttempts, groupData, hasSentScore, markScoreSent, resetProgress, sendScore, startTime ] );
 
     return (
         <MainLayout>

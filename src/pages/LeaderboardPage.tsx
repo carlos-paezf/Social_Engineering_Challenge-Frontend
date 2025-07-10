@@ -19,13 +19,12 @@ const LeaderboardPage = () => {
             <div className="max-w-4xl mx-auto px-4 py-8">
                 <h2 className="text-3xl font-bold mb-6 text-center text-purple-800">🏆 Ranking de Grupos</h2>
 
+                { ( !data || !data.length ) && <p className="text-center text-orange-500">No hay registros para listar</p> }
+
+                { ( topThree && topThree.length ) && <LeaderboardPodium topThree={ topThree } /> }
+
                 {
-                    !data || !data.length || !topThree || !topThree.length
-                        ? <p className="text-center text-orange-500">No hay registros para listar</p>
-                        : <LeaderboardPodium topThree={ topThree } />
-                }
-                {
-                    !data || !data.length || !othersGroups || !othersGroups.length
+                    !othersGroups || !othersGroups.length
                         ? <p className="text-center text-orange-500">No hay registros para listar</p>
                         : <LeaderboardTable data={ othersGroups! } />
                 }

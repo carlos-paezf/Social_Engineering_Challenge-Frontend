@@ -26,7 +26,7 @@ export const CluePost: FC<Props> = ( { idx, id, imageUrl, postDate, description,
             className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200"
         >
             <div className="flex items-center gap-3 p-4">
-                <img src={ profileAvatar || "/assets/default-avatar.png" } alt="Avatar" className="w-10 h-10 rounded-full object-cover" />
+                <img src={ profileAvatar ?? "src/assets/default-avatar.png" } alt="Avatar" className="w-10 h-10 rounded-full object-cover" />
 
                 <div className="">
                     <p className="font-semibold text-gray-800">{ profileName || "Victima" }</p>
@@ -34,7 +34,7 @@ export const CluePost: FC<Props> = ( { idx, id, imageUrl, postDate, description,
                 </div>
             </div>
 
-            <img src={ imageUrl } alt="Pista Visual" className="w-full h-48 object-cover" />
+            <img src={ imageUrl } alt="Pista Visual" className="w-full h-100 object-cover" />
 
             <div className="p-4">
                 <p className="text-base text-gray-800 mb-2">{ description }</p>

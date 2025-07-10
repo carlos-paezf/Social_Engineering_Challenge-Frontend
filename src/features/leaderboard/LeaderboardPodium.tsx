@@ -27,8 +27,8 @@ export const LeaderboardPodium: FC<PodiumProps> = ( { topThree } ) => {
                             { index === 1 && <SilverTrophy /> }
                             { index === 2 && <BronzeTrophy /> }
                             <p className={ `text-2xl font-bold ${ placeColors[ index ] }` }>#{ index + 1 }</p>
-                            <p className="text-sm">{ group.groupName }</p>
-                            <p className="text-xs text-gray-300">{ group.institution }</p>
+                            <p className="text-sm">{ group.group.groupName }</p>
+                            <p className="text-xs text-gray-300">{ group.group.institution }</p>
                             <p className="text-xs mt-1">⏱ { formatDuration( group.timeTaken ) }</p>
                             <p className="text-xs">❌ { group.attempts } intentos</p>
                         </div>

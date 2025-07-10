@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
-import type { GroupData } from "../types/Group";
+import type { GroupBack, GroupBasic } from "../types/Group";
 import { api } from "./client";
+import { useGameStore } from "../store/useGameStore";
 
 interface RegisterResponse {
     success: boolean;
@@ -10,10 +11,15 @@ interface RegisterResponse {
 
 
 export const useRegisterGroup = () => {
-    return useMutation<RegisterResponse, Error, GroupData>( {
-        mutationFn: async ( groupData: GroupData ) => {
-            const response = await api.post( "/groups/register", groupData );
+    const setGroupData = useGameStore( ( state ) => state.setGroupData );
+
+    return useMutation<RegisterResponse, Error, GroupBasic>( {
+        mutationFn: async ( groupData: GroupBasic ) => {
+            const response = await api.post( "/group", groupData );
             return response.data;
+        },
+        onSuccess: ( groupWithId ) => {
+            setGroupData( ( groupWithId as unknown ) as GroupBack );
         }
     } );
 };

@@ -15,7 +15,7 @@ interface LoginResponse {
 export const useLogin = () => {
     return useMutation<LoginResponse, Error, LoginRequest>( {
         mutationFn: async ( data ) => {
-            const response = await api.post( "/auth/login", data );
+            const response = await api.post( "/auth", data );
             return response.data;
         }
     } );

@@ -24,7 +24,7 @@ export const CluesFeed = () => {
     return (
         <div className="w-full max-w-2xl mx-auto px-4 space-y-6">
             { visibleHints.map( ( hint, idx ) => <CluePost key={ hint.id } idx={ idx } { ...hint } /> ) }
-            { hasMore && <ScrollSentinel onVisible={ loadNextHint } /> }
+            <ScrollSentinel onVisible={ loadNextHint } />
             { hasMore && <LoaderSpinner message="Cargando más pistas..." /> }
         </div>
     );

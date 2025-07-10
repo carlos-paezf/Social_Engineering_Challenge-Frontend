@@ -25,10 +25,10 @@ export const LeaderboardTable: FC<LeaderboardProps> = ( { data } ) => {
                 { data.map( ( group, index ) => (
                     <tr key={ index } className="border-t text-gray-800 border-gray-700 hover:bg-gray-800 hover:text-gray-100 transition-colors">
                         <td className="p-3 font-semibold">{ index + 4 }</td>
-                        <td className="p-3">{ group.groupName }</td>
-                        <td className="p-3">{ group.institution }</td>
-                        <td className="p-3">{ group.leaderName }</td>
-                        <td className="p-3">{ group.memberCount }</td>
+                        <td className="p-3">{ group.group.groupName }</td>
+                        <td className="p-3">{ group.group.institution }</td>
+                        <td className="p-3">{ group.group.leaderName }</td>
+                        <td className="p-3">{ group.group.memberCount }</td>
                         <td className="p-3">{ formatDuration( group.timeTaken ) }</td>
                         <td className="p-3">{ group.attempts }</td>
                     </tr>

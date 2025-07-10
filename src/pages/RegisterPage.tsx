@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useRegisterGroup } from "../api/useRegisterGroup";
 import { RegisterForm } from "../features/auth/RegisterForm";
 import { MainLayout } from "../layout/MainLayout";
-import { useGameStore } from "../store/useGameStore";
 
 
 const RegisterPage = () => {
@@ -14,7 +13,6 @@ const RegisterPage = () => {
     const [ error, setError ] = useState( "" );
 
     const navigate = useNavigate();
-    const setGroupData = useGameStore( ( state ) => state.setGroupData );
 
     const { mutate: registerGroup, isPending } = useRegisterGroup();
 
@@ -40,7 +38,6 @@ const RegisterPage = () => {
 
         const groupData = { groupName, institution, leaderName, memberCount };
 
-        setGroupData( groupData );
 
         registerGroup( groupData, {
             onSuccess: () => navigate( "/hints" ),

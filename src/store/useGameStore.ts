@@ -1,15 +1,15 @@
 import { create } from "zustand";
-import type { GroupData } from "../types/Group";
+import type { GroupBack } from "../types/Group";
 
 
 interface GameStore {
-    groupData: GroupData | null;
-    setGroupData: ( data: GroupData ) => void;
+    groupData: GroupBack | null;
+    setGroupData: ( data: GroupBack ) => void;
     clearGroupData: () => void;
 }
 
 
-const loadGroupData = (): GroupData | null => {
+const loadGroupData = (): GroupBack | null => {
     try {
         const raw = localStorage.getItem( "groupData" );
         if ( !raw ) return null;
@@ -22,7 +22,7 @@ const loadGroupData = (): GroupData | null => {
             "leaderName" in parsed &&
             "memberCount" in parsed
         ) {
-            return parsed as GroupData;
+            return parsed as GroupBack;
         }
         return null;
     } catch {

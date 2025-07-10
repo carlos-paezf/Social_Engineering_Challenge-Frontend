@@ -12,7 +12,7 @@ export const useHints = () => {
     return useQuery<Hint[]>( {
         queryKey: [ "hints" ],
         queryFn: async () => {
-            const response = await api.get( "/hints" );
+            const response = await api.get( "/hint" );
             return response.data;
         }
     } );

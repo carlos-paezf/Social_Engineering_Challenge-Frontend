@@ -7,7 +7,7 @@ export const useLeaderboard = () => {
     return useQuery<GroupRanking[]>( {
         queryKey: [ "ranking" ],
         queryFn: async () => {
-            const response = await api.get( "/groups/ranking" );
+            const response = await api.get( "/ranking" );
             return response.data;
         }
     } );

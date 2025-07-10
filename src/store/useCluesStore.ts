@@ -39,7 +39,9 @@ TypeScript. The `create` function from Zustand is used to define the store shape
 export const useCluesStore = create<CluesStore>(
     ( set, get ) => {
         const persistedStart = localStorage.getItem( "startTime" );
-        const initialStartTime = persistedStart ? Number( persistedStart ) : null;
+        const initialStartTime = persistedStart && !isNaN( Number( persistedStart ) )
+            ? Number( persistedStart )
+            : null;
 
         return {
             startTime: initialStartTime,
@@ -47,7 +49,7 @@ export const useCluesStore = create<CluesStore>(
                 if ( get().startTime === null ) {
                     const now = Date.now();
                     localStorage.setItem( "startTime", String( now ) );
-                    set( { startTime: Date.now() } );
+                    set( { startTime: now } );
                 }
             },
             viewedHints: [],
@@ -58,7 +60,7 @@ export const useCluesStore = create<CluesStore>(
                     set( { viewedHints: [ ...viewedHints, id ] } );
                 }
             },
-            visibleCount: 1,
+            visibleCount: 2,
             loadNextHint: () => {
                 const current = get().visibleCount;
                 set( { visibleCount: current + 1 } );
