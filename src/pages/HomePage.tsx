@@ -9,8 +9,8 @@ const HomePage = () => {
                 <h2 className="text-5xl font-bold text-gray-800">¡Bienvenido al Reto Hacker!</h2>
 
                 <p className="text-lg text-gray-600">
-                    Ponte en los zapatos de un hacer ético por un día. Usa tu ingenio, trabajo en equipo y las pistas
-                    disponibles para descubrir la contraseña de un perfil... ¡Antes de que se acabe el tiempo!
+                    Ponte en los zapatos de un hacker ético por un día. Usa tu ingenio, trabajo en equipo y las pistas
+                    disponibles para descubrir la contraseña de un perfil... ¿Tu información está segura?
                 </p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
